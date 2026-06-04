@@ -1,5 +1,8 @@
 # Project DevOps Deploy
 
+### CI status:
+![CI](https://github.com/rfvbkm/project-devops-deploy/actions/workflows/ci.yml/badge.svg)
+
 Bulletin board service.
 
 > **Fork policy**: this upstream repository is read-only. We do not review or merge pull requests and we do not accept infrastructure changes (Dockerfiles, Ansible roles, CI/CD workflows, etc.). To experiment or extend the project, fork it and work inside your own repository.
@@ -57,9 +60,9 @@ All other variables supported by Spring Boot can be overridden the same way; che
     ```
 
 3. Explore the API:
-   - `GET http://localhost:8080/api/bulletins`
-   - `GET http://localhost:8080/api/bulletins?page=1&perPage=9&sort=createdAt&order=DESC&state=PUBLISHED&search=laptop`
-   - Swagger UI: `http://localhost:8080/swagger-ui/index.html`
+    - `GET http://localhost:8080/api/bulletins`
+    - `GET http://localhost:8080/api/bulletins?page=1&perPage=9&sort=createdAt&order=DESC&state=PUBLISHED&search=laptop`
+    - Swagger UI: `http://localhost:8080/swagger-ui/index.html`
 
 `/api/bulletins` accepts pagination (`page`, `perPage`), sorting (`sort`, `order`) and filters (`state`, `search`). Filters are processed via JPA Specifications so the same contract is available to the React Admin frontend.
 
