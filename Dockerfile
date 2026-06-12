@@ -1,3 +1,15 @@
+FROM node:24-alpine AS frontend
+
+WORKDIR /workspace/frontend
+
+COPY frontend/package.json frontend/package-lock.json ./
+
+RUN npm ci
+
+COPY frontend/ ./
+
+RUN npm run build
+
 FROM eclipse-temurin:21-jdk AS builder
 
 WORKDIR /workspace
@@ -10,6 +22,8 @@ COPY gradle ./gradle
 RUN chmod +x gradlew && ./gradlew --version --no-daemon
 
 COPY src ./src
+
+COPY --from=frontend /workspace/frontend/dist ./src/main/resources/static
 
 RUN ./gradlew bootJar --no-daemon -x test
 
